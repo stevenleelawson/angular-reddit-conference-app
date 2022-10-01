@@ -13,6 +13,7 @@ import { appRoutes } from './routes';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './common/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { EventListResolver } from './events/events-list-resolver.service';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
     EventService,
     ToastrService,
     EventRouteActivator,
+    EventListResolver,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState,
@@ -46,4 +48,5 @@ export function checkDirtyState(component:CreateEventComponent) {
   if (component.isDirty) {
     return window.confirm('You didnt save you trippin?')
   }
+  return true;
 }
